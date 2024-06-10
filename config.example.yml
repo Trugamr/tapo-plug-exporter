@@ -1,0 +1,6 @@
+tapo:
+  # Username and password of the tapo account
+  username:
+  password:
+  # IP address of the smart plug
+  ip:
