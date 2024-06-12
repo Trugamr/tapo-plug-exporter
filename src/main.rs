@@ -1,7 +1,8 @@
 use std::{net::SocketAddr, sync::Arc};
 
 use axum::{
-    http::header::CONTENT_TYPE,
+    body::Body,
+    http::header,
     response::{IntoResponse, Response},
     routing, serve, Extension, Router,
 };
@@ -11,7 +12,6 @@ use tokio::sync::Mutex;
 mod settings;
 
 #[derive(Clone)]
-
 struct State {
     device: Arc<Mutex<tapo::PlugEnergyMonitoringHandler>>,
     current_power_gauge: prometheus::GaugeVec,
@@ -37,8 +37,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         "current_power",
         "Current power usage in watts",
         &["device_id", "type", "model", "mac", "nickname"]
-    )
-    .unwrap();
+    )?;
 
     // Create new server and route for the metrics endpoint
     let app = Router::new()
@@ -83,7 +82,7 @@ async fn metrics_handler(Extension(state): Extension<State>) -> impl IntoRespons
 
     // Return the metrics with the correct content type
     Response::builder()
-        .header(CONTENT_TYPE, encoder.format_type())
-        .body(axum::body::Body::from(buffer))
+        .header(header::CONTENT_TYPE, encoder.format_type())
+        .body(Body::from(buffer))
         .unwrap()
 }

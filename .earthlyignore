@@ -1,0 +1,12 @@
+# Versioning and build directories
+.git/
+.gitignore
+target/
+
+# Config files
+config.yml
+config.example.yml
+
+# Earthly files
+Earthfile
+.earthlyignore
