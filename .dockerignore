@@ -7,6 +7,6 @@ target/
 config.yml
 config.example.yml
 
-# Earthly files
-Earthfile
-.earthlyignore
+# Docker files
+Dockerfile
+.dockerignore
