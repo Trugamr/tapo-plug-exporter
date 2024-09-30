@@ -60,6 +60,9 @@ async fn metrics_handler(Extension(state): Extension<State>) -> impl IntoRespons
     let device = state.device.lock().await;
 
     let device_info = device.get_device_info().await.unwrap();
+
+ 
+
     let current_power = device.get_current_power().await.unwrap();
 
     // Update the current power gauge

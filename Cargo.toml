@@ -8,5 +8,5 @@ axum = "0.7.5"
 config = "0.14.0"
 prometheus = "0.13.4"
 serde = { version = "1.0", features = ["derive"] }
-tapo = "0.7"
+tapo = "0.7.16"
 tokio = { version = "1.38.0", features = ["full"] }
